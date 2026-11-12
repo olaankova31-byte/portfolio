@@ -3,10 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Дмитрий Голыбдин — 3D визуализация</title>
-<meta name="description" content="Портфолио 3D artist: архитектурная визуализация, интерьеры, CGI.">
-<meta property="og:title" content="Dmitry Golybdin — 3D Visualization">
+<title>Ольга Янкова — сайты, логотипы и айдентика</title>
+<meta name="description" content="Портфолио Ольги Янковой: сайты, логотипы, айдентика, полиграфия и SMM.">
+<meta property="og:title" content="Olga Yankova — websites, logos &amp; identity">
+<meta property="og:description" content="Portfolio of Olga Yankova: websites, logos, identity, print and SMM.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23111111'/><text x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='600' fill='%23ffffff' text-anchor='middle'>OY</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -191,6 +194,37 @@ dialog.xl{width:min(1400px,calc(100% - 2*var(--m)));padding:clamp(18px,2.4vw,32p
 
 body>header .logo{font-weight:600;font-size:13px;letter-spacing:.08em;line-height:1.3;text-transform:uppercase}
 @media(max-width:860px){body>header .logo{font-size:10.5px;letter-spacing:.05em;max-width:62%}}
+/* CTA + case link */
+.btn{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;border:0;padding:14px 26px;font:inherit;font-size:15px;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:.82}
+.btn:focus-visible{outline:2px solid #000;outline-offset:4px}
+.vr3 .lk button{border:0;background:none;padding:0;font:inherit;font-size:15px;color:inherit;cursor:pointer;border-bottom:1px solid var(--line);transition:border-color .2s}
+.vr3 .lk button:hover{border-color:#000}
+
+/* ---------- resume blocks ---------- */
+.sec-h .note{color:var(--mute);font-size:14px;text-align:right}
+.eb{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin-bottom:18px}
+.facts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.facts li{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.4}
+.facts span{color:var(--mute)}
+.facts b{font-weight:400;text-align:right;color:var(--fg)}
+.about .r .tx{margin:18px 0 0;font-size:clamp(15px,1.35vw,18px);line-height:1.6;max-width:58ch;color:var(--mute)}
+.about .r .pos{margin:0 0 clamp(20px,3vw,36px);font-size:clamp(26px,3.4vw,52px);line-height:1.08;letter-spacing:-.03em;max-width:18em;color:var(--fg)}
+.xp{border-bottom:1px solid var(--line)}
+.xr{display:grid;grid-template-columns:1.05fr 1.45fr 1.5fr;gap:var(--g);padding:clamp(18px,2.2vw,30px) 0;border-top:1px solid var(--line);align-items:baseline}
+.xr .pe{color:var(--mute);font-size:14px}
+.xr .rl{font-size:clamp(19px,1.9vw,28px);letter-spacing:-.02em;line-height:1.12}
+.xr .rl small{display:block;color:var(--mute);font-size:14px;letter-spacing:0;margin-top:5px}
+.xr .ds{margin:0;color:var(--mute);font-size:15px;line-height:1.5}
+.xn{margin:18px 0 0;color:var(--mute);font-size:14px;max-width:64ch;line-height:1.5}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px) var(--g);align-items:start}
+.duo h3{font-size:15px;font-weight:500;margin:0 0 14px}
+.edl{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.edl li{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.4}
+.edl .y{color:var(--mute)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.tags li{border:1px solid var(--line);padding:7px 13px;font-size:14px}
+@media(max-width:860px){.xr{grid-template-columns:1fr;gap:6px}.duo{grid-template-columns:1fr}.facts,.edl{max-width:100%}.sec-h .note{display:none}}
 </style>
 </head>
 <body>
@@ -203,143 +237,17 @@ body>header .logo{font-weight:600;font-size:13px;letter-spacing:.08em;line-heigh
 <main id="app"></main>
 <dialog id="dlg" aria-labelledby="dt"><div class="dh"><h3 id="dt"></h3><button id="dx" aria-label="Close">✕</button></div><div id="db"></div></dialog>
 <script>
-/* ---------- CONTENT MODEL (add a project = add one object) ---------- */
-const T={
- ru:{nav:{services:'Услуги',works:'Работы',team:'Команда',contact:'Контакты',projects:'Проекты'},menu:'Меню',close:'Закрыть',
-  hero:'Весь визуал бренда в одних руках',sub:'3D, сайты, айдентика и видео — один контакт и единый подход.',cta:'Смотреть услуги',sel:'Избранное',all:'Все 3D-проекты',brand:'АРХИТЕКТУРА · ВИЗУАЛ · МОНТАЖ',fsub:'Визуальный контент',photo:'Фото',
-  pos:'Берём на себя визуал целиком — от 3D и сайта до логотипа и видео. Вы общаетесь с одним человеком, а не координируете нескольких исполнителей.',
-  svc:[['3D-визуализация','','Архитектура, интерьеры, предметы, CGI'],['Digital-дизайн','','Сайты, логотипы и айдентика, баннеры'],['Видеомонтаж','','Длинный и короткий формат: YouTube, Reels, Shorts, TikTok']],
-  web:['Разработка сайтов','Сайты и лендинги: дизайн, структура и вёрстка. Выберите проект, чтобы посмотреть подробнее.'],
-  dg:[['Разработка сайтов','Сайты и лендинги: дизайн, структура и вёрстка.'],['Логотипы и айдентика','Логотип и базовые элементы фирменного стиля.'],['Баннеры','Рекламные и информационные баннеры, материалы для соцсетей.']],
-  vi:'Монтирую как длинный формат, так и короткий: Reels, Shorts, TikTok.',vs:'Что входит',vw:'Примеры работ',yt:'YouTube',lk:'Ссылки',st:'Сайт',dgi:'Делаем сайты и лендинги, а также логотипы и фирменный стиль, баннеры и другие материалы для онлайн. Ниже — примеры сайтов.',hm:'Главная',fo:'Открыть в Figma',
-  vl:['Обработка сырого материала','Цветокоррекция','Работа со звуком','Самостоятельный подбор дополнительного материала','Качественные монтажные склейки, эффекты, анимация'],
-  team:[['Дмитрий Голыбдин','3D-визуализация, сопровождение клиентов'],['Ольга Янкова','Разработка сайтов, дизайн'],['Валентин Тремасов','Видеомонтаж']],
-  role:'3D Artist / Architectural Visualization',
-  about:'Создаю фотореалистичные визуализации архитектуры, интерьеров и объектов, помогая представить проект до его реализации.',
-  s1:'3D визуализация',s2:'Digital дизайн',
-  s1l:['Архитектурная визуализация','Интерьерная визуализация','Экстерьерная визуализация','Предметная визуализация'],
-  s2l:[['Разработка сайтов','Сайты и лендинги: дизайн, структура и вёрстка. Выберите проект, чтобы посмотреть подробнее.'],['Логотипы','Разработка логотипа и базовых элементов фирменного стиля.'],['Digital-материалы','Презентации, обложки и другие материалы для онлайн-использования.'],['Баннеры','Рекламные и информационные баннеры для сайтов и соцсетей.']],mt:'Дополнительные услуги',discuss:'Обсудить задачу',back:'← Разработка сайтов',menuL:'Меню',blocks:'Блоки',mobile:'Мобильная версия',modalL:'Форма заявки',soon:'Скоро',soonL:'Скриншоты появятся позже.',close2:'Закрыть',
-  cH:'Есть проект?',cP:'Обсудим задачу и формат сотрудничества, подготовим предварительный расчёт.',prev:'Предыдущий',next:'Следующий',back:'← Все проекты',
-  ph:'Рендер',tt:'3D-визуализация',year:'Год',client:'Клиент',loc:'Локация',
-  cat:{arch:'Архитектурная визуализация',ext:'Экстерьерная визуализация',int:'Интерьерная визуализация',prod:'Предметная визуализация',cgi:'CGI'},
-  suf:'архитектурная визуализация'},
- en:{nav:{services:'Services',works:'Work',team:'Team',contact:'Contact',projects:'Projects'},menu:'Menu',close:'Close',
-  hero:'All your brand visuals in one pair of hands',sub:'3D, websites, identity and video — one contact, one approach.',cta:'View services',sel:'Selected work',all:'All 3D projects',brand:'ARCHITECTURE · VISUAL · EDITING',fsub:'Visual content',photo:'Photo',
-  pos:'We take care of your visuals end to end — from 3D and websites to logos and video. You talk to one person instead of coordinating several contractors.',
-  svc:[['3D Visualization','','Architecture, interiors, products, CGI'],['Digital Design','','Websites, logos and identity, banners'],['Video Editing','','Long and short format: YouTube, Reels, Shorts, TikTok']],
-  web:['Website Development','Websites and landing pages: design, structure and build. Choose a project to see more.'],
-  dg:[['Website Development','Websites and landing pages: design, structure and build.'],['Logos & Identity','Logo and basic brand identity elements.'],['Banners','Ad and informational banners, social media materials.']],
-  vi:'I edit both long format and short format: Reels, Shorts, TikTok.',vs:'What’s included',vw:'Selected work',yt:'YouTube',lk:'Links',st:'Site',dgi:'We build websites and landing pages, and also design logos and brand identity, banners and other online materials. Examples of websites below.',hm:'Home',fo:'Open in Figma',
-  vl:['Processing of raw footage','Color correction','Sound work','Sourcing additional footage','Clean cuts, effects, animation'],
-  team:[['Dmitry Golybdin','3D visualization, client support'],['Olga Yankova','Websites, design'],['Valentin Tremasov','Video editing']],
-  role:'3D Artist / Architectural Visualization',
-  about:'I create photorealistic visualizations of architecture, interiors and objects, helping people see a project before it is built.',
-  s1:'3D Visualization',s2:'Digital Design',
-  s1l:['Architectural Visualization','Interior Visualization','Exterior Visualization','Product Visualization'],
-  s2l:[['Website Development','Websites and landing pages: design, structure and build. Choose a project to see more.'],['Logos','Logo design and basic brand identity elements.'],['Digital Materials','Presentations, covers and other materials for online use.'],['Banners','Ad and informational banners for websites and social media.']],mt:'Additional services',discuss:'Discuss a task',back:'← Website Development',menuL:'Menu',blocks:'Sections',mobile:'Mobile version',modalL:'Request form',soon:'Soon',soonL:'Screenshots coming soon.',close2:'Close',
-  cH:'Have a project?',cP:'We’ll discuss the task and format, and prepare a preliminary estimate.',prev:'Previous',next:'Next',back:'← All projects',
-  ph:'Render',tt:'3D Visualization',year:'Year',client:'Client',loc:'Location',
-  cat:{arch:'Architectural Visualization',ext:'Exterior Visualization',int:'Interior Visualization',prod:'Product Visualization',cgi:'CGI'},
-  suf:'architectural visualization'}
-};
-const IMG2=["assets/01.jpg", "assets/02.jpg", "assets/03.jpg", "assets/04.jpg", "assets/05.jpg", "assets/06.jpg", "assets/07.jpg", "assets/08.jpg", "assets/09.jpg", "assets/10.jpg"];
-const R2=[1.299, 1.413, 1.3, 1.3, 1.3, 1.3, 1.3, 1.415, 1.415, 1.301];
-const IMG=["assets/11.jpg", "assets/12.jpg", "assets/13.jpg", "assets/14.jpg"];
-/* cover/images: replace null with image URLs. ratio: width/height. */
-const mk=(n)=>Array.from({length:n},(_,i)=>({src:null,alt:'',ratio:[16/9,3/2,16/9,16/10,4/3,3/2,16/9,16/9][i%8]}));
-const projects=[
- {"slug":"hito","title":{"ru":"ЖК «ХИТО»","en":"HITO Residential Complex"},"category":"arch","year":null,"client":"Rodina Development","location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/229960749/zhk-hito-dlja-Rodina-Development","cover":"images/hito/02.webp","images":[{"src":"images/hito/01.webp","alt":"","ratio":1.777},{"src":"images/hito/02.webp","alt":"","ratio":2},{"src":"images/hito/03.webp","alt":"","ratio":2},{"src":"images/hito/04.webp","alt":"","ratio":2},{"src":"images/hito/05.webp","alt":"","ratio":2},{"src":"images/hito/06.webp","alt":"","ratio":0.8},{"src":"images/hito/07.webp","alt":"","ratio":1.333},{"src":"images/hito/08.webp","alt":"","ratio":2},{"src":"images/hito/09.webp","alt":"","ratio":2},{"src":"images/hito/10.webp","alt":"","ratio":2},{"src":"images/hito/11.webp","alt":"","ratio":2},{"src":"images/hito/12.webp","alt":"","ratio":1},{"src":"images/hito/13.webp","alt":"","ratio":1}]},
- {"slug":"origana","title":{"ru":"ЖК «Оригана»","en":"Origana Residential Complex"},"category":"arch","year":null,"client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/241078377/Residential-complex-3D-Visualization-(Origana)","cover":"images/origana/01.webp","images":[{"src":"images/origana/01.webp","alt":"","ratio":1.3},{"src":"images/origana/02.webp","alt":"","ratio":1.413},{"src":"images/origana/03.webp","alt":"","ratio":1.3},{"src":"images/origana/04.webp","alt":"","ratio":1.3},{"src":"images/origana/05.webp","alt":"","ratio":1.3},{"src":"images/origana/06.webp","alt":"","ratio":1.3},{"src":"images/origana/07.webp","alt":"","ratio":1.3},{"src":"images/origana/08.webp","alt":"","ratio":1.414},{"src":"images/origana/09.webp","alt":"","ratio":1.414},{"src":"images/origana/10.webp","alt":"","ratio":1.301}]},
- {"slug":"iyun","title":{"ru":"ЖК «Июнь»","en":"Iyun Residential Complex"},"category":"arch","year":"2025","client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/256706341/zhk-ijun-2025","cover":"images/iyun/01.webp","images":[{"src":"images/iyun/01.webp","alt":"","ratio":2.011},{"src":"images/iyun/02.jpg","alt":"","ratio":2.011},{"src":"images/iyun/03.jpg","alt":"","ratio":2.011},{"src":"images/iyun/04.jpg","alt":"","ratio":2.011},{"src":"images/iyun/05.webp","alt":"","ratio":2.011},{"src":"images/iyun/06.webp","alt":"","ratio":2.011},{"src":"images/iyun/07.webp","alt":"","ratio":2.011},{"src":"images/iyun/08.webp","alt":"","ratio":2.011},{"src":"images/iyun/09.webp","alt":"","ratio":2.011},{"src":"images/iyun/10.webp","alt":"","ratio":2.011}]},
- {"slug":"iyun-mop","title":{"ru":"МОП ЖК «Июнь»","en":"Iyun Residential — Common Areas"},"category":"int","year":"2024","client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/256709435/mop-zhk-ijun-Archviz-2024","cover":"images/iyun-mop/01.webp","images":[{"src":"images/iyun-mop/01.webp","alt":"","ratio":2.011},{"src":"images/iyun-mop/02.webp","alt":"","ratio":2.011},{"src":"images/iyun-mop/03.webp","alt":"","ratio":0.733},{"src":"images/iyun-mop/04.webp","alt":"","ratio":0.733},{"src":"images/iyun-mop/05.webp","alt":"","ratio":0.733},{"src":"images/iyun-mop/06.webp","alt":"","ratio":0.733},{"src":"images/iyun-mop/07.webp","alt":"","ratio":1.365},{"src":"images/iyun-mop/08.jpg","alt":"","ratio":0.733}]},
- {"slug":"svoy","title":{"ru":"ЖК «Свой»","en":"Svoy Residential Complex"},"category":"arch","year":null,"client":"Rodina Development","location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/241077351/zhk-svoj-Rodina-Development","cover":"images/svoy/01.webp","images":[{"src":"images/svoy/01.webp","alt":"","ratio":1.501},{"src":"images/svoy/02.webp","alt":"","ratio":1.501},{"src":"images/svoy/03.webp","alt":"","ratio":1.501}]},
- {"slug":"misty-forest-villa","title":{"ru":"Вилла в туманном лесу","en":"Misty Forest Villa"},"category":"ext","year":null,"client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/256705981/Misty-Forest-Villa-Cinematic-Archviz-in-the-Mist","cover":"images/misty-forest-villa/01.jpg","images":[{"src":"images/misty-forest-villa/01.jpg","alt":"","ratio":2},{"src":"images/misty-forest-villa/02.jpg","alt":"","ratio":2},{"src":"images/misty-forest-villa/03.webp","alt":"","ratio":2},{"src":"images/misty-forest-villa/04.webp","alt":"","ratio":2},{"src":"images/misty-forest-villa/05.webp","alt":"","ratio":2},{"src":"images/misty-forest-villa/06.webp","alt":"","ratio":2}]},
- {"slug":"residential-concepts","title":{"ru":"Жилые концепции","en":"Residential Concepts"},"category":"arch","year":"2024","client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/256706677/Residential-Concepts-ArchViz-Collection-2024","cover":"images/residential-concepts/01.webp","images":[{"src":"images/residential-concepts/01.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/02.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/03.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/04.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/05.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/06.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/07.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/08.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/09.webp","alt":"","ratio":1.777},{"src":"images/residential-concepts/10.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/11.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/12.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/13.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/14.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/15.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/16.webp","alt":"","ratio":3.333},{"src":"images/residential-concepts/17.webp","alt":"","ratio":3.333},{"src":"images/residential-concepts/18.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/19.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/20.webp","alt":"","ratio":2.5},{"src":"images/residential-concepts/21.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/22.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/23.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/24.webp","alt":"","ratio":1.365},{"src":"images/residential-concepts/25.webp","alt":"","ratio":6.009},{"src":"images/residential-concepts/26.webp","alt":"","ratio":2.011},{"src":"images/residential-concepts/27.webp","alt":"","ratio":2.011},{"src":"images/residential-concepts/28.webp","alt":"","ratio":2.998}]},
- {"slug":"private-house-samara","title":{"ru":"Частный дом, Самара","en":"Private House, Samara"},"category":"ext","year":null,"client":null,"location":"Самара","description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/251166777/Private-house-Samara-3d-Visualization","cover":"images/private-house-samara/01.webp","images":[{"src":"images/private-house-samara/01.webp","alt":"","ratio":1.333},{"src":"images/private-house-samara/02.webp","alt":"","ratio":1.333},{"src":"images/private-house-samara/03.webp","alt":"","ratio":1.333},{"src":"images/private-house-samara/04.webp","alt":"","ratio":1.333}]},
- {"slug":"private-house","title":{"ru":"Частный дом","en":"Private House"},"category":"ext","year":null,"client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/251167565/Private-house-3D-Visualization","cover":"images/private-house/01.jpg","images":[{"src":"images/private-house/01.jpg","alt":"","ratio":1.333},{"src":"images/private-house/02.webp","alt":"","ratio":1.333},{"src":"images/private-house/03.webp","alt":"","ratio":1.333},{"src":"images/private-house/04.webp","alt":"","ratio":1.333}]},
- {"slug":"private-house-2","title":{"ru":"Частный дом II","en":"Private House II"},"category":"ext","year":null,"client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/241064703/Private-house","cover":"images/private-house-2/01.webp","images":[{"src":"images/private-house-2/01.webp","alt":"","ratio":1.777},{"src":"images/private-house-2/02.webp","alt":"","ratio":3.118},{"src":"images/private-house-2/03.webp","alt":"","ratio":0.678},{"src":"images/private-house-2/04.webp","alt":"","ratio":0.401},{"src":"images/private-house-2/05.webp","alt":"","ratio":1.809},{"src":"images/private-house-2/06.webp","alt":"","ratio":1.799}]},
- {"slug":"unknown-project","title":{"ru":"Unknown Project","en":"Unknown Project"},"category":"ext","year":null,"client":null,"location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/241064263/Unknown-Project","cover":"images/unknown-project/01.webp","images":[{"src":"images/unknown-project/01.webp","alt":"","ratio":1.777},{"src":"images/unknown-project/02.webp","alt":"","ratio":1.777},{"src":"images/unknown-project/03.webp","alt":"","ratio":1.542},{"src":"images/unknown-project/04.webp","alt":"","ratio":1.544},{"src":"images/unknown-project/05.webp","alt":"","ratio":1.544},{"src":"images/unknown-project/06.webp","alt":"","ratio":1.544},{"src":"images/unknown-project/07.webp","alt":"","ratio":0.833}]},
- {"slug":"ici-caldaie","title":{"ru":"Котёл ICI Caldaie","en":"ICI Caldaie Boiler"},"category":"prod","year":null,"client":"ICI Caldaie","location":null,"description":{"ru":"","en":""},"behance":"https://www.behance.net/gallery/241054497/ICI-Caldaie-Boiler","cover":"images/ici-caldaie/02.webp","images":[{"src":"images/ici-caldaie/01.webp","alt":"","ratio":0.429},{"src":"images/ici-caldaie/02.webp","alt":"","ratio":1}]}
-];
-const featured=['hito','origana','iyun','iyun-mop','svoy','misty-forest-villa'];
-const CONTACT={email:'hello@example.com',telegram:'https://t.me/username',other:null}; // placeholders
-
 /* ---------- STATE ---------- */
 let lang='ru';
 try{const s=localStorage.getItem('lang');if(s==='en'||s==='ru')lang=s}catch(e){}
 const $=s=>document.querySelector(s),app=$('#app');
 const t=()=>T[lang];
-const media=(o,cls,eager)=>o.src?`<img src="${o.src}" alt="${o.alt||''}" ${eager?'':'loading="lazy"'} style="--r:${o.ratio||1.5}">`:`<div class="ph" role="img" aria-label="${o.alt||t().ph}" style="--r:${o.ratio||1.5}">${t().ph}</div>`;
-const card=(p,sz,r)=>`<a class="card ${sz} rv" href="#/projects/${p.slug}"><div class="im" style="--r:${r}">${media({src:p.cover,alt:p.title[lang],ratio:r},'',false)}</div><h3>${p.title[lang]}</h3><span>${t().cat[p.category]}</span></a>`;
-const ratios={ 's-a':2.2,'s-b':1.5,'s-c':0.85,'s-d':1.1,'s-e':1.6,'s-f':1.4,'s-g':1.3};
-/* asymmetric rhythm: full, big+small, small+big, repeat */
-const rhythm=['s-a','s-b','s-c','s-d','s-e'];
-const grid=(list)=>`<div class="grid">${list.map((p,i)=>{const k=rhythm[i%5];return card(p,k,ratios[k])}).join('')}</div>`;
 
-/* ---------- VIEWS ---------- */
-function home(){const x=t(),pj=slug=>projects.find(p=>p.slug===slug);
-const tile=(img,title,label,attr,pos,pt)=>`<a class="card rv" ${attr}><div class="im">${img?`<img src="${img}" alt="${title}" loading="lazy" style="--r:1.33;${pos||''}">`:`<div class="ph" style="--r:1.33">${pt||x.soon}</div>`}</div><h3>${title}</h3><span>${label}</span></a>`;
-const o=pj('origana'),h=pj('private-house');
-return `<section class="hero" aria-label="${x.hero}"><div class="hero-t"><h1>${x.hero}</h1><div class="hd"><p>${x.sub}</p><a class="cta" href="#/" data-s="services">${x.cta}</a></div></div><div class="hero-i"><a class="hf" href="#/projects" aria-label="${x.svc[0][0]}"><img src="${IMG[0]}" alt="${x.svc[0][0]}"></a><a class="hf" href="#/digital" aria-label="${x.svc[1][0]}"><img src="${BR}" alt="${x.svc[1][0]}"></a><a class="vt" href="#/video" aria-label="${x.svc[2][0]}"><span>${x.svc[2][0]}</span><video autoplay muted loop playsinline preload="auto" poster="assets/15.jpg" src="assets/16.mp4" onerror="this.remove()"></video></a></div></section>
-<section class="sec" id="about"><p class="pos rv">${x.pos}</p></section>
-<section class="sec" id="services"><div class="sec-h"><h2>${x.nav.services}</h2></div><div class="srvl">${x.svc.map((s,i)=>`<button class="sv row" data-n="${i}"><span class="n">0${i+1}</span><span class="nm">${s[0]}</span><span class="ds">${s[2]}</span><span class="ar">→</span></button>`).join('')}</div></section>
-<section class="sec" id="team"><div class="sec-h"><h2>${x.nav.team}</h2></div><div class="tm">${x.team.map((m,i)=>`<div class="rv">${[PHD,PHO,PHV][i]?`<img class="tp" src="${[PHD,PHO,PHV][i]}" alt="${m[0]}" style="${i===1?'object-position:50% 40%':i===0?'object-position:50% 18%':''}">`:`<div class="ph" style="--r:1">${x.photo}</div>`}<h3>${m[0]}</h3><span>${m[1]}</span></div>`).join('')}</div></section>
-${contact()}`}
-function contact(){const x=t(),c=CONTACT;return `<section class="contact" id="contact"><h2>${x.cH}</h2><p>${x.cP}</p><div class="links"><a href="mailto:${c.email}">${c.email}</a><a href="${c.telegram}" rel="noopener">Telegram</a>${c.other?`<a href="${c.other}">Behance</a>`:''}</div></section>`}
+/* ---------- CONTACTS (placeholders) ---------- */
+const CONTACT={email:'yankoba@inbox.ru',telegram:'https://t.me/yank0va',tg:'@yank0va',tel:'+79179536562',telView:'+7 917 953-65-62'};
+
+/* ---------- DATA ---------- */
 const BR="assets/17.jpg";
-const PHD="assets/18.jpg";
-const PHO="assets/19.jpg";
-const PHV="assets/20.jpg";
-const YT=[['Паша Осовцов','https://youtu.be/raxZ8KSLDdo'],['Подкаст «Тутти Фрутти»','https://www.youtube.com/watch?v=xKABh8RYWPI'],['Миша Сеин','https://www.youtube.com/watch?v=Hw85_qRv0Jg'],['Доктор Шуров','https://www.youtube.com/watch?v=B15I-hs0B20'],['Гештальт-терапевт Никита Савельев','https://www.youtube.com/watch?v=nfM7nirOq_Q']];
-const SITES=[{"n": {"ru": "IT-NIKA", "en": "IT-NIKA"}, "s": {"ru": "IT / внедрение CRM-систем", "en": "IT / CRM implementation"}, "l": [{"ru": "Новый дизайн (Figma)", "en": "New design (Figma)", "u": "https://www.figma.com/proto/Bn4W970UG87IRvq9u23JtT/IT-NIKA?node-id=38-15&t=jIFUimkatNyMWlwp-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1"}]}, {"n": {"ru": "Invest Group", "en": "Invest Group"}, "s": {"ru": "Инвестиции / недвижимость", "en": "Investment / real estate"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://www.igsamara.ru/"}]}, {"n": {"ru": "DeloArt", "en": "DeloArt"}, "s": {"ru": "Digital / брендинг / разработка", "en": "Digital / branding / development"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://brand.deloart.ru/"}]}, {"n": {"ru": "Delo Art / X-Party", "en": "Delo Art / X-Party"}, "s": {"ru": "Чат-боты / автоматизация бизнеса", "en": "Chatbots / business automation"}, "l": [{"ru": "Страница чат-бота", "en": "Chatbot page", "u": "https://bot.x-party.ru/"}]}, {"n": {"ru": "HOGO Smart", "en": "HOGO Smart"}, "s": {"ru": "Умные устройства / системы доступа / IoT", "en": "Smart devices / access systems / IoT"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://hogo-smart.ru/"}]}, {"n": {"ru": "A-Store", "en": "A-Store"}, "s": {"ru": "E-commerce / электроника и гаджеты", "en": "E-commerce / electronics and gadgets"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://a-store63.ru/"}]}, {"n": {"ru": "Biorav", "en": "Biorav"}, "s": {"ru": "Медицина / центр восточной медицины", "en": "Medicine / oriental medicine center"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://biorav.ru/"}]}, {"n": {"ru": "Фитнес-проект", "en": "Fitness project"}, "s": {"ru": "Фитнес / спорт", "en": "Fitness / sports"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://xn----jtbictd3abeep5frb.xn--p1ai/"}]}];
-function digital(){const x=t();
- const pl=()=>`<div class="card rv"><div class="im"><div class="ph" style="--r:1.33">${x.soon}</div></div></div>`;
- const rows=SITES.map((p,i)=>`<div class="vr3 rv"><span class="nm">${p.n[lang]}</span><span class="sp">${p.s[lang]}</span><span class="lk">${p.l.map(l=>`<a href="${l.u}" target="_blank" rel="noopener">${l[lang]} ↗</a>`).join('')}</span></div>`).join('');
- const blk=(i,body,c)=>`<section class="dgs"><div class="sec-h"><h2>${x.dg[i][0]}</h2></div><p class="dd">${x.dg[i][1]}</p><div class="${c}">${body}</div></section>`;
- return crumbs([[x.svc[1][0]]])+`<div class="pg-h"><h1>${x.svc[1][0]}</h1></div><div style="padding:0 var(--m)"><p class="pos" style="font-size:clamp(20px,2.4vw,34px);margin-bottom:clamp(32px,5vw,64px)">${x.dgi}</p><div class="vl3">${rows}</div></div>${contact()}`}
-function video(){const x=t();
- return crumbs([[x.svc[2][0]]])+`<div class="pg-h"><h1>${x.svc[2][0]}</h1></div><div class="vg"><p class="pos" style="font-size:clamp(20px,2.4vw,34px)">${x.vi}</p>
- <div class="vc"><div><h4>${x.vs}</h4><ul class="vl">${x.vl.map(i=>`<li>${i}</li>`).join('')}</ul></div>
- <div><h4>${x.vw}</h4><div class="vrw">${YT.map(y=>`<a class="vr" href="${y[1]}" target="_blank" rel="noopener"><span>${y[0]}</span><span>${x.yt} ↗</span></a>`).join('')}</div></div></div></div>${contact()}`}
-function crumbs(a){const x=t();return `<nav class="bc" aria-label="${lang==='ru'?'Навигация':'Breadcrumb'}"><a href="#/">${x.hm}</a>`+a.map(i=>` <span aria-hidden="true">/</span> `+(i[1]?`<a href="${i[1]}">${i[0]}</a>`:`<span aria-current="page">${i[0]}</span>`)).join('')+`</nav>`}
-function list(){const x=t();return crumbs([[x.tt]])+`<div class="pg-h"><h1>${x.tt}</h1></div><section style="padding:0 var(--m)">${grid(projects)}</section>${contact()}`}
-const lay=['f','h h','f','lg','h h','f']; // gallery rhythm; repeats for any count
-function gallery(imgs,title){const out=[];let i=0,k=0;while(i<imgs.length){const l=lay[k%lay.length].split(' ');const n=Math.min(l.length,imgs.length-i);
- for(let j=0;j<n;j++){const im=imgs[i+j],c=n===1?l[0]:'h';const ratio=n>1?Math.min(...imgs.slice(i,i+n).map(q=>q.ratio)):im.ratio;
- out.push(`<figure class="${c} rv">${media({...im,alt:im.alt||title+' — '+(i+j+1),ratio},'',i+j===0)}</figure>`)}
- i+=n;k++}return out.join('')}
-function detail(slug){const x=t(),i=projects.findIndex(p=>p.slug===slug);if(i<0)return `<div class="pg-h"><h1>404</h1></div><p class="back"><a href="#/projects">${x.back}</a></p>`;
- const p=projects[i],pr=projects[(i-1+projects.length)%projects.length],nx=projects[(i+1)%projects.length];
- const meta=[['year',p.year],['client',p.client],['loc',p.location]].filter(m=>m[1]).map(m=>`<p>${x[m[0]]}: ${m[1]}</p>`).join('');
- document.title=`${p.title[lang]} — ${x.suf} | ${lang==='ru'?'Дмитрий Голыбдин':'Dmitry Golybdin'}`;
- return crumbs([[x.tt,'#/projects'],[p.title[lang]]])+`<article><header class="pd-h" style="position:static;backdrop-filter:none;background:none;padding-top:clamp(40px,7vw,110px)"><div class="t"><h1>${p.title[lang]}</h1><div class="ty">${x.cat[p.category]}</div></div><div class="d">${meta}${p.description[lang]?`<p>${p.description[lang]}</p>`:''}</div></header>
- <div class="gal">${gallery(p.images,p.title[lang])}</div></article>
- <nav class="pn" aria-label="Projects"><a href="#/projects/${pr.slug}"><small>← ${x.prev}</small>${pr.title[lang]}</a><a class="nx" href="#/projects/${nx.slug}"><small>${x.next} →</small>${nx.title[lang]}</a></nav>
- <p class="back" style="padding-bottom:0"><a href="#/projects">${x.back}</a></p><div style="height:clamp(56px,8vw,120px)"></div>`}
-
-/* ---------- ROUTER ---------- */
-let pendingScroll=null;
-let path=(location.hash||'').replace(/^#\/?/,'');
-function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
-function route(){const h=path,parts=h.split('/'),x=t();
- document.documentElement.lang=lang;document.title=x.brand+' — '+x.hero;
- let v,cur='';
- if(parts[0]==='projects'&&parts[1]){v=detail(parts[1]);cur='projects'}
- else if(parts[0]==='projects'){v=list();cur='projects'}
- else if(parts[0]==='digital'){v=digital();cur='digital'}else if(parts[0]==='video'){v=video();cur='video'}else v=home();
- app.innerHTML=v+`<footer><span>© ${x.brand}</span><span>${x.fsub}</span></footer>`;
- renderNav(cur);$('#logo').textContent=x.brand;
- if(pendingScroll&&!cur){const el=document.getElementById(pendingScroll);if(el)el.scrollIntoView({behavior:'smooth'});pendingScroll=null}else window.scrollTo(0,0);
- observe();document.querySelectorAll('video').forEach(v=>{v.muted=true;const p=v.play();if(p&&p.catch)p.catch(()=>{})})}
-function renderNav(cur){const x=t();
- $('#nav').innerHTML=['services','team','contact'].map(k=>`<a href="#/" data-s="${k}">${x.nav[k]}</a>`).join('');
- $('#menu').textContent=$('#nav').classList.contains('open')?x.close:x.menu;
- document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang))}
-function observe(){const els=document.querySelectorAll('.rv');
- if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return}
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});els.forEach(e=>io.observe(e))}
-
-/* ---------- EVENTS ---------- */
 const WEB=["assets/21.jpg", "assets/22.jpg", "assets/23.jpg", "assets/24.jpg", "assets/25.jpg", "assets/26.jpg", "assets/27.jpg", "assets/28.jpg", "assets/29.jpg", "assets/30.jpg"];
 const webProjects=[
  {title:{ru:'Invest Group',en:'Invest Group'},
@@ -350,42 +258,211 @@ const webProjects=[
   links:{ru:[['Текущий сайт','https://www.igsamara.ru/']],en:[['Current website','https://www.igsamara.ru/']]},
   desktop:WEB.slice(0,5),mobile:WEB.slice(5,9),extra:WEB.slice(9,10)}
 ];
+const SITES=[{"n": {"ru": "IT-NIKA", "en": "IT-NIKA"}, "s": {"ru": "IT / внедрение CRM-систем", "en": "IT / CRM implementation"}, "l": [{"ru": "Новый дизайн (Figma)", "en": "New design (Figma)", "u": "https://www.figma.com/proto/Bn4W970UG87IRvq9u23JtT/IT-NIKA?node-id=38-15&t=jIFUimkatNyMWlwp-0&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1"}]}, {"n": {"ru": "Invest Group", "en": "Invest Group"}, "s": {"ru": "Инвестиции / недвижимость", "en": "Investment / real estate"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://www.igsamara.ru/"}]}, {"n": {"ru": "DeloArt", "en": "DeloArt"}, "s": {"ru": "Digital / брендинг / разработка", "en": "Digital / branding / development"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://brand.deloart.ru/"}]}, {"n": {"ru": "Delo Art / X-Party", "en": "Delo Art / X-Party"}, "s": {"ru": "Чат-боты / автоматизация бизнеса", "en": "Chatbots / business automation"}, "l": [{"ru": "Страница чат-бота", "en": "Chatbot page", "u": "https://bot.x-party.ru/"}]}, {"n": {"ru": "HOGO Smart", "en": "HOGO Smart"}, "s": {"ru": "Умные устройства / системы доступа / IoT", "en": "Smart devices / access systems / IoT"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://hogo-smart.ru/"}]}, {"n": {"ru": "A-Store", "en": "A-Store"}, "s": {"ru": "E-commerce / электроника и гаджеты", "en": "E-commerce / electronics and gadgets"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://a-store63.ru/"}]}, {"n": {"ru": "Biorav", "en": "Biorav"}, "s": {"ru": "Медицина / центр восточной медицины", "en": "Medicine / oriental medicine center"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://biorav.ru/"}]}, {"n": {"ru": "Фитнес-проект", "en": "Fitness project"}, "s": {"ru": "Фитнес / спорт", "en": "Fitness / sports"}, "l": [{"ru": "Сайт", "en": "Website", "u": "https://xn----jtbictd3abeep5frb.xn--p1ai/"}]}];
+const FIG='https://www.figma.com/design/3Q2ssvWF4UKlYxnkusXyjq/%D0%9F%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE-%D0%AF%D0%BD%D0%BA%D0%BE%D0%B2%D0%BE%D0%B9-%D0%9E%D0%BB%D1%8C%D0%B3%D0%B8?node-id=1363-2003&t=b9ty62ANLgSAu7TL-1';
+const EXP=[
+ {pe:{ru:'2024 — сейчас',en:'2024 — present'},role:{ru:'UX/UI-дизайнер',en:'UX/UI designer'},co:{ru:'DeloART · Самара',en:'DeloART · Samara'},
+  d:{ru:'Сайты и digital-макеты под задачи команды и клиентов: вводные и структура, прототип, дизайн, согласование. Веду 3–4 проекта параллельно, общаюсь с клиентом и разработчиком, аргументирую решения.',
+     en:'Websites and digital layouts for the team and clients: brief and structure, prototype, design, sign-off. I run 3–4 projects in parallel, talk to clients and developers, and back up design decisions.'}},
+ {pe:{ru:'2022 — сейчас',en:'2022 — present'},role:{ru:'Графический дизайнер',en:'Graphic designer'},co:{ru:'DeloART',en:'DeloART'},
+  d:{ru:'Логотипы по концептам заказчика, иконки и элементы интерфейса, оформление соцсетей, баннеры и макеты. Adobe Photoshop, Illustrator, Figma.',
+     en:'Logos based on the client’s concepts, icons and UI elements, social media layouts, banners and mockups. Adobe Photoshop, Illustrator, Figma.'}},
+ {pe:{ru:'апрель — декабрь 2023',en:'Apr — Dec 2023'},role:{ru:'Web-дизайнер',en:'Web designer'},co:{ru:'ООО «СтройКерпПро»',en:'StroyKerpPro LLC'},
+  d:{ru:'До 10 клиентских направлений параллельно: сбор вводных, визуальное оформление digital-коммуникаций, сайты и баннеры, взаимодействие с заказчиками и разработчиками.',
+     en:'Up to 10 client accounts in parallel: gathering briefs, visual design for digital communications, websites and banners, working with clients and developers.'}},
+ {pe:{ru:'2022 — 2023',en:'2022 — 2023'},role:{ru:'SMM-менеджер',en:'SMM manager'},co:{ru:'Парикмахерская Man&Woman',en:'Man&Woman salon'},
+  d:{ru:'Контент-планы и материалы для соцсетей: тексты, фото и видео, визуал. Регулярное обновление контента, адаптация подачи под услуги салона.',
+     en:'Content plans and social media materials: copy, photo and video, visuals. Regular content updates and adapting the tone to the salon’s services.'}}
+];
+const EDU=[
+ {y:'2025',t:{ru:'ПГУТИ — бизнес-информатика',en:'PGUTI — business informatics'}},
+ {y:'2022',t:{ru:'Школа дизайна Contented, Skillfactory — графический дизайнер',en:'Contented School of Design, Skillfactory — graphic design'}},
+ {y:'2021',t:{ru:'Курсы графического дизайна Дарьи Спигиной',en:'Daria Spigina graphic design courses'}},
+ {y:'2020',t:{ru:'Колледж ПГУТИ — программирование в компьютерных системах',en:'PGUTI College — computer systems programming'}}
+];
+const SKL={
+ ru:['Figma','Adobe Photoshop','Adobe Illustrator','CorelDRAW','Web-дизайн','Адаптивный дизайн','HTML','CSS','Логотипы','Айдентика','Фирменный стиль','Полиграфия','Подготовка макетов','Презентации','SMM','Контент-план','Avito','Яндекс.Директ'],
+ en:['Figma','Adobe Photoshop','Adobe Illustrator','CorelDRAW','Web design','Responsive design','HTML','CSS','Logos','Identity','Brand style','Print','Print-ready files','Presentations','SMM','Content plans','Avito','Yandex.Direct']
+};
+
+
+/* ---------- COPY ---------- */
+const T={
+ru:{
+ title:'Ольга Янкова — сайты, логотипы и айдентика',
+ brand:'Ольга Янкова',
+ nav:{about:'Обо мне',experience:'Опыт',services:'Услуги',works:'Работы',contact:'Контакты'},
+ hm:'Главная',menu:'Меню',close:'Закрыть',
+ hero:'Сайты, логотипы и айдентика',
+ sub:'Проектирую и собираю сайты, рисую логотипы и айдентику, готовлю макеты для полиграфии и соцсетей — от структуры и смысла до дизайна и вёрстки.',
+ cta:'Смотреть работы',
+ aboutL:'Обо мне',
+ pos:'Дизайн, который работает: сайты, логотипы, айдентика.',
+ ab1:'Я Ольга Янкова, дизайнер сайтов и визуальных коммуникаций из Самары. Шесть лет в digital: структура и прототип, дизайн и адаптив, логотипы и фирменный стиль, макеты для полиграфии и социальных сетей — от одного баннера до полного комплекта носителей.',
+ ab2:'Параллельно с сайтами собираю айдентику: знаки, иконки, элементы интерфейса, оформление соцсетей. Готовлю макеты к печати с учётом требований типографии.',
+ ab3:'Есть практический опыт в SMM и контенте: контент-планы, тексты, фото и видео, размещения на Avito и Яндекс.Директ. Это помогает видеть связь между дизайном, контентом и продвижением. Работаю в Figma, Photoshop, Illustrator и CorelDRAW, понимаю, как макет собирается в HTML/CSS.',
+ facts:[['Опыт','6 лет 7 месяцев'],['Город','Самара, удалённо'],['Формат','проектная работа, full/part-time'],['Языки','русский, английский A1']],
+ expH:'Опыт',
+ expN:'6 лет 7 месяцев в дизайне и digital',
+ expMore:'Ещё в работе: полиграфия и презентации, размещения на Avito и Яндекс.Директ, фото- и видеоконтент.',
+ eduH:'Образование',
+ skH:'Навыки',
+ esH:'Образование и навыки',
+ wo:'Работы',
+ wi:'Сайты, которые можно открыть вживую, и галерея логотипов в Figma.',
+ sH:'Сайты',
+ sD:'Корпоративные сайты, лендинги и digital-проекты — ссылки ведут на живые версии.',
+ lH:'Логотипы и айдентика',
+ lD:'Знаки и логотипы, собранные в одном Figma-файле.',
+ lB:'Смотреть в Figma',
+ cs:'Кейс',
+ cH:'Обсудим проект?',
+ cP:'Расскажите о задаче — предложу решение и сроки. Открыта к проектам по сайтам, логотипам и айдентике, полиграфии и SMM.',
+ fsub:'Сайты · логотипы · айдентика',
+ web:['Сайты','Скриншоты и ссылки на сайты, которые можно открыть вживую.'],
+ menuL:'Меню сайта',blocks:'Блоки',mobile:'Мобильная версия',modalL:'Дополнительно',
+ soonL:'Скриншоты скоро появятся',soon:'Скоро',back:'Назад',lk:'Ссылки',
+ discuss:'Обсудить проект',fo:'Открыть в Figma',
+ svc:[['Разработка сайтов','Структура, дизайн, вёрстка, запуск'],['Логотипы и айдентика','Знак, фирменный стиль, носители']]
+},
+en:{
+ title:'Olga Yankova — websites, logos & identity',
+ brand:'Olga Yankova',
+ nav:{about:'About',experience:'Experience',services:'Services',works:'Work',contact:'Contact'},
+ hm:'Home',menu:'Menu',close:'Close',
+ hero:'Websites, logos & identity',
+ sub:'I design and build websites, create logos and identities, and prepare assets for print and social media — from structure and meaning to design and code.',
+ cta:'View work',
+ aboutL:'About me',
+ pos:'Design that works: websites, logos, identity.',
+ ab1:"I'm Olga Yankova, a web and visual designer based in Samara. Six years in digital: structure and prototypes, design and responsive layouts, logos and identity, print and social media assets — from a single banner to a full set of brand materials.",
+ ab2:'Alongside websites I build identities: marks, icons, UI elements, social media layouts. I prepare print-ready files with production requirements in mind.',
+ ab3:'I also have hands-on SMM experience: content plans, copy, photo and video, listings on Avito and Yandex.Direct. That helps me see the link between design, content and promotion. I work in Figma, Photoshop, Illustrator and CorelDRAW, and I understand how a layout becomes HTML/CSS.',
+ facts:[['Experience','6 years 7 months'],['Location','Samara, remote'],['Format','project work, full/part-time'],['Languages','Russian, English A1']],
+ expH:'Experience',
+ expN:'6 years 7 months in design and digital',
+ expMore:'Also: print and presentations, Avito and Yandex.Direct placements, photo and video content.',
+ eduH:'Education',
+ skH:'Skills',
+ esH:'Education & skills',
+ wo:'Work',
+ wi:'Websites you can open live, and a logo gallery in Figma.',
+ sH:'Websites',
+ sD:'Corporate sites, landing pages and digital projects — links go to the live versions.',
+ lH:'Logos & identity',
+ lD:'Marks and logos collected in a single Figma file.',
+ lB:'View in Figma',
+ cs:'Case study',
+ cH:"Let's talk about your project",
+ cP:'Tell me about the task — I will suggest a solution and timeline. Open to websites, logos and identity, print and SMM.',
+ fsub:'Websites · logos · identity',
+ web:['Websites','Screenshots and links to the live websites.'],
+ menuL:'Site menu',blocks:'Sections',mobile:'Mobile version',modalL:'Extra',
+ soonL:'Screenshots coming soon',soon:'Soon',back:'Back',lk:'Links',
+ discuss:'Discuss the project',fo:'Open in Figma',
+ svc:[['Website development','Structure, design, build, launch'],['Logos & identity','Mark, visual identity, brand assets']]
+}};
+
+/* ---------- HELPERS ---------- */
+function crumbs(a){const x=t();return `<nav class="bc" aria-label="${lang==='ru'?'Навигация':'Breadcrumb'}"><a href="#/">${x.hm}</a>`+a.map(i=>` <span aria-hidden="true">/</span> `+(i[1]?`<a href="${i[1]}">${i[0]}</a>`:`<span aria-current="page">${i[0]}</span>`)).join('')+`</nav>`}
+
+function contact(){const x=t(),c=CONTACT;return `<section class="contact" id="contact"><h2>${x.cH}</h2><p>${x.cP}</p><div class="links"><a href="mailto:${c.email}">${c.email}</a><a href="${c.telegram}" target="_blank" rel="noopener">Telegram ${c.tg}</a><a href="tel:${c.tel}">${c.telView}</a></div></section>`}
+
+
+/* ---------- VIEWS ---------- */
+function home(){const x=t();
+ const tile=(img,label,attr)=>`<a class="hf" href="#/digital" ${attr||''} aria-label="${label}"><img src="${img}" alt="${label}"></a>`;
+ return `<section class="hero" aria-label="${x.hero}">
+ <div class="hero-t"><h1>${x.hero}</h1><div class="hd"><p>${x.sub}</p><a class="cta" href="#/digital">${x.cta}</a></div></div>
+ <div class="hero-i">${tile(WEB[0],x.sH)}${tile(BR,x.lH)}</div>
+ </section>
+ <section class="sec" id="about"><div class="about">
+ <div class="l rv"><span class="eb">${x.aboutL}</span><ul class="facts">${x.facts.map(f=>`<li><span>${f[0]}</span><b>${f[1]}</b></li>`).join('')}</ul></div>
+ <div class="r rv"><p class="pos">${x.pos}</p><p class="tx">${x.ab1}</p><p class="tx">${x.ab2}</p><p class="tx">${x.ab3}</p></div>
+ </div></section>
+ <section class="sec" id="experience"><div class="sec-h"><h2>${x.expH}</h2><span class="note">${x.expN}</span></div>
+ <div class="xp">${EXP.map(e=>`<div class="xr rv"><span class="pe">${e.pe[lang]}</span><div class="rl">${e.role[lang]}<small>${e.co[lang]}</small></div><p class="ds">${e.d[lang]}</p></div>`).join('')}</div>
+ <p class="xn">${x.expMore}</p></section>
+ <section class="sec" id="skills"><div class="sec-h"><h2>${x.esH}</h2></div>
+ <div class="duo"><div class="rv"><ul class="edl">${EDU.map(e=>`<li><span class="y">${e.y}</span><span>${e.t[lang]}</span></li>`).join('')}</ul></div>
+ <div class="rv"><ul class="tags">${SKL[lang].map(s=>`<li>${s}</li>`).join('')}</ul></div></div></section>
+ <section class="sec" id="services"><div class="sec-h"><h2>${x.nav.services}</h2></div><div class="srvl">${x.svc.map((s,i)=>`<button class="sv row" data-svc="${i}"><span class="n">0${i+1}</span><span class="nm">${s[0]}</span><span class="ds">${s[1]}</span><span class="ar">→</span></button>`).join('')}</div></section>
+ ${contact()}`}
+
+
+function digital(){const x=t();
+ const rows=SITES.map(p=>{const c=webProjects.find(w=>w.title[lang]===p.n[lang]);
+  return `<div class="vr3 rv"><span class="nm">${p.n[lang]}</span><span class="sp">${p.s[lang]}</span><span class="lk">${p.l.map(l=>`<a href="${l.u}" target="_blank" rel="noopener">${l[lang]} ↗</a>`).join('')}${c?`<button data-case="${webProjects.indexOf(c)}">${x.cs}</button>`:''}</span></div>`}).join('');
+ return crumbs([[x.wo]])+`<div class="pg-h"><h1>${x.wo}</h1></div>
+ <div style="padding:0 var(--m)"><p class="pos rv" style="font-size:clamp(20px,2.4vw,34px);margin-bottom:clamp(32px,5vw,64px)">${x.wi}</p></div>
+ <section class="sec" style="padding-top:0" id="sites"><div class="sec-h"><h2>${x.sH}</h2></div><p class="dd">${x.sD}</p><div class="vl3">${rows}</div></section>
+ <section class="sec" id="logos"><div class="sec-h"><h2>${x.lH}</h2></div><p class="dd">${x.lD}</p><p><button class="btn" data-f>${x.lB} ↗</button></p></section>
+ ${contact()}`}
+
+/* ---------- MODAL ---------- */
 const dlg=$('#dlg'),dt=$('#dt'),db=$('#db');
 function dOpen(wide){dlg.classList.remove('xl');dlg.classList.toggle('wide',!!wide);if(!dlg.open)dlg.showModal();dlg.scrollTop=0}
-const FIG='https://www.figma.com/design/3Q2ssvWF4UKlYxnkusXyjq/%D0%9F%D0%BE%D1%80%D1%82%D1%84%D0%BE%D0%BB%D0%B8%D0%BE-%D0%AF%D0%BD%D0%BA%D0%BE%D0%B2%D0%BE%D0%B9-%D0%9E%D0%BB%D1%8C%D0%B3%D0%B8?node-id=1363-2003&t=b9ty62ANLgSAu7TL-1';
-function openFigma(){const x=t();dt.textContent=x.dg[1][0];db.innerHTML=`<div class="fgw"><iframe src="https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(FIG)}" title="Figma" loading="lazy" allowfullscreen></iframe></div><div class="a ft"><a class="go" href="${FIG}" target="_blank" rel="noopener">${x.fo} ↗</a></div>`;dOpen(true);dlg.classList.add('xl')}
-function discuss(){return `<div class="a ft"><button class="go" data-a="go">${t().discuss}</button></div>`}
-function openSv(n){go(['projects','digital','video'][n])}
-function dSites(){const x=t();dt.textContent=x.web[0];
- db.innerHTML=`<p>${x.web[1]}</p><div class="wl">`+webProjects.map((p,i)=>`<button class="wp" data-i="${i}"><span class="th">${p.desktop[0]?`<img src="${p.desktop[0]}" alt="">`:`<span class="ph">${x.soon}</span>`}</span><span class="wt">${p.title[lang]}</span><span class="wy">${p.type[lang]||'&nbsp;'}</span></button>`).join('')+`</div>`+discuss();dOpen(true)}
+function openFigma(){const x=t();dt.textContent=x.lB;db.innerHTML=`<div class="fgw"><iframe src="https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(FIG)}" title="Figma" loading="lazy" allowfullscreen></iframe></div><div class="a ft"><a class="go" href="${FIG}" target="_blank" rel="noopener">${x.fo} ↗</a></div>`;dOpen(true);dlg.classList.add('xl')}
+function discuss(id){return `<div class="a ft"><button class="go" data-a="go">${t().discuss}</button></div>`}
 function dProject(i){const x=t(),p=webProjects[i],ti=p.title[lang];dt.textContent=ti;
- const im=(a)=>a.map(s=>`<img src="${s}" alt="${ti}" loading="lazy">`).join('');
+ const im=a=>a.map(s=>`<img src="${s}" alt="${ti}" loading="lazy">`).join('');
  const row=(l,a)=>`<div class="mn"><span>${l}</span>${a.map(m=>`<i>${m}</i>`).join('')}</div>`;
  db.innerHTML=(webProjects.length>1?`<button class="bk" data-a="back">${x.back}</button>`:'')+(p.type[lang]?`<div class="ty">${p.type[lang]}</div>`:'')+(p.desc[lang]?`<p>${p.desc[lang]}</p>`:'')+(p.links?`<div class="mn"><span>${x.lk}</span>${p.links[lang].map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join('')}</div>`:'')+(p.menu?row(x.menuL,p.menu[lang]):'')+(p.sections?row(x.blocks,p.sections[lang]):'')+(p.desktop.length?`<div class="shots">${im(p.desktop)}</div>`:`<p>${x.soonL}</p>`)+(p.mobile.length?`<h4>${x.mobile}</h4><div class="mob">${im(p.mobile)}</div>`:'')+(p.extra.length?`<h4>${x.modalL}</h4><div class="ex">${im(p.extra)}</div>`:'')+discuss();dOpen(true)}
+
+/* ---------- ROUTER ---------- */
+let pendingScroll=null;
+let path=(location.hash||'').replace(/^#\/?/,'');
+function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
+function renderNav(cur){const x=t();
+ $('#nav').innerHTML=`<a href="#/" data-s="about">${x.nav.about}</a><a href="#/" data-s="experience">${x.nav.experience}</a><a href="#/digital"${cur==='digital'?' aria-current="page"':''}>${x.nav.works}</a><a href="#/" data-s="contact">${x.nav.contact}</a>`;
+ $('#menu').textContent=$('#nav').classList.contains('open')?x.close:x.menu}
+
+function route(){const parts=path.split('/'),x=t();
+ if(parts[0]==='projects'||parts[0]==='video'){path='digital';try{history.replaceState(null,'','#/digital')}catch(e){}}
+ document.documentElement.lang=lang;
+ let v,cur='';
+ if(path==='digital'){v=digital();cur='digital';document.title=x.wo+' — '+x.brand}
+ else{v=home();document.title=x.title}
+ app.innerHTML=v+`<footer><span>© ${new Date().getFullYear()} ${x.brand}</span><span>${x.fsub}</span></footer>`;
+ renderNav(cur);$('#logo').textContent=x.brand;
+ document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false'));
+ if(pendingScroll){const el=document.getElementById(pendingScroll);if(el)el.scrollIntoView({behavior:'smooth'});pendingScroll=null}
+ observe();
+ document.dispatchEvent(new Event('route:done'))}
+
+/* reveal on scroll */
+let io=null;
+function observe(){const els=document.querySelectorAll('.rv:not(.in)');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
+ if(!io)io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
+ els.forEach(e=>io.observe(e))}
+
+/* ---------- EVENTS ---------- */
 dlg.addEventListener('click',e=>{
  const r=dlg.getBoundingClientRect();
  if(e.target===dlg&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)){dlg.close();return}
  const b=e.target.closest('#dx,[data-a],[data-i]');if(!b)return;
  if(b.id==='dx')dlg.close();
  else if(b.dataset.i!==undefined)dProject(+b.dataset.i);
- else if(b.dataset.a==='back')dSites();
- else if(b.dataset.a==='go'){dlg.close();const c=document.getElementById('contact');if(c)c.scrollIntoView({behavior:'smooth'})}
+ else if(b.dataset.a==='go'){dlg.close();pendingScroll='contact';if(path!=='')go('')}
 });
 document.addEventListener('click',e=>{
- const sv=e.target.closest('[data-n]');if(sv){e.preventDefault();openSv(+sv.dataset.n);return}
+ const sv=e.target.closest('[data-svc]');if(sv){e.preventDefault();const i=+sv.dataset.svc;if(i===0)go('digital');else openFigma();return}
  const fg=e.target.closest('[data-f]');if(fg){e.preventDefault();openFigma();return}
- const wk=e.target.closest('[data-w]');if(wk){e.preventDefault();dProject(+wk.dataset.w);return}
- const lb=e.target.closest('.lang button');if(lb){if(dlg.open)dlg.close();lang=lb.dataset.l;try{localStorage.setItem('lang',lang)}catch(_){}route();return}
+ const cs=e.target.closest('[data-case]');if(cs){e.preventDefault();dProject(+cs.dataset.case);return}
  const a=e.target.closest('a[data-s]');
  if(a){e.preventDefault();const id=a.dataset.s;$('#nav').classList.remove('open');$('#menu').setAttribute('aria-expanded','false');
-  if(path===''){document.getElementById(id).scrollIntoView({behavior:'smooth'})}else{pendingScroll=id;go('')}return}
+  if(path===''){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}else{pendingScroll=id;go('')}return}
  if(e.target.closest('nav a')){$('#nav').classList.remove('open');$('#menu').setAttribute('aria-expanded','false')}
- if(e.target.closest('#menu')){const n=$('#nav'),o=n.classList.toggle('open');$('#menu').setAttribute('aria-expanded',o);renderNav(path.indexOf('projects')===0?'projects':'')}
+ if(e.target.closest('#menu')){const n=$('#nav'),o=n.classList.toggle('open');$('#menu').setAttribute('aria-expanded',o);renderNav(path==='digital'?'digital':'')}
  const lk=e.target.closest('a[href^="#/"]');
  if(lk){e.preventDefault();$('#nav').classList.remove('open');$('#menu').setAttribute('aria-expanded','false');go(lk.getAttribute('href').replace(/^#\/?/,''))}
 });
+const lb=e=>e.target.closest('.lang button');
+document.addEventListener('click',e=>{const b=lb(e);if(!b)return;if(dlg.open)dlg.close();lang=b.dataset.l;try{localStorage.setItem('lang',lang)}catch(_){}
+ document.querySelectorAll('.lang button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.l===lang?'true':'false'));route()});
 window.addEventListener('hashchange',()=>{path=(location.hash||'').replace(/^#\/?/,'');route()});
 route();
+
 </script>
 </body>
 </html>
