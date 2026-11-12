@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ольга Янкова — сайты, логотипы и айдентика</title>
-<meta name="description" content="Портфолио Ольги Янковой: сайты, логотипы, айдентика, полиграфия и SMM.">
-<meta property="og:title" content="Olga Yankova — websites, logos &amp; identity">
-<meta property="og:description" content="Portfolio of Olga Yankova: websites, logos, identity, print and SMM.">
+<title>Ольга Янкова — сайты и цифровая подача для бизнеса</title>
+<meta name="description" content="Сайты и цифровая подача для малого бизнеса, недвижимости и строительства. При необходимости подключаю специалистов по 3D и видео.">
+<meta property="og:title" content="Ольга Янкова — один контакт для вашего проекта">
+<meta property="og:description" content="Сайты, визуальная подача и специалисты под задачу бизнеса, недвижимости и строительства.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://olaankova31-byte.github.io/portfolio/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23111111'/><text x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='600' fill='%23ffffff' text-anchor='middle'>OY</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portfolio-pages.css">
 <style>
 :root{--bg:#fff;--fg:#000;--mute:#6B6B6B;--line:#EAEAEA;--ph:#F3F3F3;--m:clamp(20px,4vw,72px);--g:clamp(12px,1.6vw,28px);--f:'Onest','Helvetica Neue',Arial,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*:before,*:after{box-sizing:inherit}
@@ -289,7 +291,7 @@ const SKL={
 /* ---------- COPY ---------- */
 const T={
 ru:{
- title:'Ольга Янкова — сайты, логотипы и айдентика',
+ title:'Ольга Янкова — сайты и цифровая подача для бизнеса',
  brand:'Ольга Янкова',
  nav:{about:'Обо мне',experience:'Опыт',services:'Услуги',works:'Работы',contact:'Контакты'},
  hm:'Главная',menu:'Меню',close:'Закрыть',
@@ -316,9 +318,9 @@ ru:{
  lD:'Знаки и логотипы, собранные в одном Figma-файле.',
  lB:'Смотреть в Figma',
  cs:'Кейс',
- cH:'Обсудим проект?',
- cP:'Расскажите о задаче — предложу решение и сроки. Открыта к проектам по сайтам, логотипам и айдентике, полиграфии и SMM.',
- fsub:'Сайты · логотипы · айдентика',
+ cH:'Есть проект?',
+ cP:'Расскажите, что нужно показать или запустить. Предложу состав работ и следующий шаг.',
+ fsub:'Сайты · цифровая подача · команда',
  web:['Сайты','Скриншоты и ссылки на сайты, которые можно открыть вживую.'],
  menuL:'Меню сайта',blocks:'Блоки',mobile:'Мобильная версия',modalL:'Дополнительно',
  soonL:'Скриншоты скоро появятся',soon:'Скоро',back:'Назад',lk:'Ссылки',
@@ -326,7 +328,7 @@ ru:{
  svc:[['Разработка сайтов','Структура, дизайн, вёрстка, запуск'],['Логотипы и айдентика','Знак, фирменный стиль, носители']]
 },
 en:{
- title:'Olga Yankova — websites, logos & identity',
+ title:'Olga Yankova — websites and digital design for business',
  brand:'Olga Yankova',
  nav:{about:'About',experience:'Experience',services:'Services',works:'Work',contact:'Contact'},
  hm:'Home',menu:'Menu',close:'Close',
@@ -353,9 +355,9 @@ en:{
  lD:'Marks and logos collected in a single Figma file.',
  lB:'View in Figma',
  cs:'Case study',
- cH:"Let's talk about your project",
- cP:'Tell me about the task — I will suggest a solution and timeline. Open to websites, logos and identity, print and SMM.',
- fsub:'Websites · logos · identity',
+ cH:'Have a project?',
+ cP:'Tell me what you need to show or launch. I will suggest a scope and a next step.',
+ fsub:'Websites · digital design · team',
  web:['Websites','Screenshots and links to the live websites.'],
  menuL:'Site menu',blocks:'Sections',mobile:'Mobile version',modalL:'Extra',
  soonL:'Screenshots coming soon',soon:'Soon',back:'Back',lk:'Links',
@@ -371,22 +373,32 @@ function contact(){const x=t(),c=CONTACT;return `<section class="contact" id="co
 
 /* ---------- VIEWS ---------- */
 function home(){const x=t();
- const tile=(img,label,attr)=>`<a class="hf" href="#/digital" ${attr||''} aria-label="${label}"><img src="${img}" alt="${label}"></a>`;
- return `<section class="hero" aria-label="${x.hero}">
- <div class="hero-t"><h1>${x.hero}</h1><div class="hd"><p>${x.sub}</p><a class="cta" href="#/digital">${x.cta}</a></div></div>
- <div class="hero-i">${tile(WEB[0],x.sH)}${tile(BR,x.lH)}</div>
+ return `<section class="landing-hero">
+  <div class="landing-intro">
+   <span class="eyebrow">${lang==='ru'?'Сайты · дизайн · команда':'Websites · design · team'}</span>
+   <h1>${lang==='ru'?'Один контакт для вашего проекта':'One point of contact for your project'}</h1>
+   <p>${lang==='ru'?'Собираю сайт и визуальную подачу, подключаю специалистов под задачу.':'I bring the website and visual direction together, adding specialists when needed.'}</p>
+   <div class="hero-actions"><a class="btn" href="work/">${lang==='ru'?'Смотреть работы':'View work'} ↗</a><a class="text-link" href="#contact">${lang==='ru'?'Обсудить проект':'Discuss a project'} ↓</a></div>
+  </div>
+  <div class="audience-grid" id="directions">
+   <a class="audience-card" href="real-estate/">
+    <img src="assets/21.jpg" alt="Сайт агентства недвижимости Invest Group">
+    <span class="audience-shade"></span><span class="audience-copy"><small>${lang==='ru'?'Недвижимость и строительство':'Real estate & construction'}</small><strong>${lang==='ru'?'Покажите будущий дом до стройки.':'Show the future home before it is built.'}</strong><span>${lang==='ru'?'Сайт, 3D-визуализация и видео':'Websites, 3D visualisation and video'} ↗</span></span>
+   </a>
+   <a class="audience-card" href="small-business/">
+    <img src="assets/17.jpg" alt="Визуальная айдентика и дизайн">
+    <span class="audience-shade"></span><span class="audience-copy"><small>${lang==='ru'?'Малый бизнес':'Small business'}</small><strong>${lang==='ru'?'Покажите, за что вас выбирают.':'Show customers why they choose you.'}</strong><span>${lang==='ru'?'Сайт, визуальная подача и контент':'Websites, visual identity and content'} ↗</span></span>
+   </a>
+  </div>
  </section>
- <section class="sec" id="about"><div class="about">
- <div class="l rv"><span class="eb">${x.aboutL}</span><ul class="facts">${x.facts.map(f=>`<li><span>${f[0]}</span><b>${f[1]}</b></li>`).join('')}</ul></div>
- <div class="r rv"><p class="pos">${x.pos}</p><p class="tx">${x.ab1}</p><p class="tx">${x.ab2}</p><p class="tx">${x.ab3}</p></div>
- </div></section>
- <section class="sec" id="experience"><div class="sec-h"><h2>${x.expH}</h2><span class="note">${x.expN}</span></div>
- <div class="xp">${EXP.map(e=>`<div class="xr rv"><span class="pe">${e.pe[lang]}</span><div class="rl">${e.role[lang]}<small>${e.co[lang]}</small></div><p class="ds">${e.d[lang]}</p></div>`).join('')}</div>
- <p class="xn">${x.expMore}</p></section>
- <section class="sec" id="skills"><div class="sec-h"><h2>${x.esH}</h2></div>
- <div class="duo"><div class="rv"><ul class="edl">${EDU.map(e=>`<li><span class="y">${e.y}</span><span>${e.t[lang]}</span></li>`).join('')}</ul></div>
- <div class="rv"><ul class="tags">${SKL[lang].map(s=>`<li>${s}</li>`).join('')}</ul></div></div></section>
- <section class="sec" id="services"><div class="sec-h"><h2>${x.nav.services}</h2></div><div class="srvl">${x.svc.map((s,i)=>`<button class="sv row" data-svc="${i}"><span class="n">0${i+1}</span><span class="nm">${s[0]}</span><span class="ds">${s[1]}</span><span class="ar">→</span></button>`).join('')}</div></section>
+ <section class="sec featured" id="work"><div class="sec-h"><h2>${lang==='ru'?'Избранная работа':'Selected work'}</h2><a href="work/">${lang==='ru'?'Все проекты':'All work'} ↗</a></div>
+  <a class="featured-case rv" href="work/">
+   <img src="assets/21.jpg" alt="Фрагмент сайта Invest Group">
+   <div><span class="eyebrow">${lang==='ru'?'Недвижимость · веб-дизайн':'Real estate · web design'}</span><h3>Invest Group</h3><p>${lang==='ru'?'Сайт агентства недвижимости с направлениями жилой и коммерческой недвижимости, ипотечным калькулятором и формой заявки.':'A real estate agency website with residential and commercial listings, a mortgage calculator and an inquiry form.'}</p><span class="text-link">${lang==='ru'?'Смотреть кейс':'View case'} ↗</span></div>
+  </a>
+ </section>
+ <section class="sec team-teaser"><div class="team-teaser-copy rv"><span class="eyebrow">${lang==='ru'?'Под задачу':'Built around your brief'}</span><h2>${lang==='ru'?'Если проекту нужны дополнительные специалисты — подключу команду.':'When a project needs extra skills, I bring in the right people.'}</h2><a class="text-link" href="team/">${lang==='ru'?'Познакомиться с командой':'Meet the team'} ↗</a></div><div class="team-roles rv"><span>${lang==='ru'?'Веб-дизайн и координация':'Web design & coordination'}</span><span>3D ${lang==='ru'?'визуализация':'visualisation'}</span><span>${lang==='ru'?'Видеомонтаж':'Video editing'}</span></div></section>
+ <section class="sec about-brief" id="about"><div class="about-label"><span class="eyebrow">${lang==='ru'?'Обо мне':'About'}</span><strong>${lang==='ru'?'Ольга Янкова':'Olga Yankova'}</strong><span>${lang==='ru'?'Самара · работаю по всей России':'Samara · working across Russia'}</span></div><div class="about-brief-copy"><h2>${lang==='ru'?'В дизайне и digital — больше шести лет.':'Over six years in design and digital.'}</h2><p>${lang==='ru'?'Проектирую структуру и интерфейсы, делаю визуальную подачу и помогаю довести сайт до запуска. Для 3D и видео подключаю специалистов команды.':'I plan structure and interfaces, shape the visual direction and help take a website to launch. For 3D and video, I bring in specialists from the team.'}</p><a href="work/" class="text-link">${lang==='ru'?'Посмотреть опыт в проектах':'See the work'} ↗</a></div></section>
  ${contact()}`}
 
 
@@ -414,11 +426,11 @@ let pendingScroll=null;
 let path=(location.hash||'').replace(/^#\/?/,'');
 function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
 function renderNav(cur){const x=t();
- $('#nav').innerHTML=`<a href="#/" data-s="about">${x.nav.about}</a><a href="#/" data-s="experience">${x.nav.experience}</a><a href="#/digital"${cur==='digital'?' aria-current="page"':''}>${x.nav.works}</a><a href="#/" data-s="contact">${x.nav.contact}</a>`;
+ $('#nav').innerHTML=`<a href="small-business/">${lang==='ru'?'Малый бизнес':'Small business'}</a><a href="real-estate/">${lang==='ru'?'Недвижимость':'Real estate'}</a><a href="work/"${cur==='digital'?' aria-current="page"':''}>${x.nav.works}</a><a href="team/">${lang==='ru'?'Команда':'Team'}</a><a href="#contact">${x.nav.contact}</a>`;
  $('#menu').textContent=$('#nav').classList.contains('open')?x.close:x.menu}
 
 function route(){const parts=path.split('/'),x=t();
- if(parts[0]==='projects'||parts[0]==='video'){path='digital';try{history.replaceState(null,'','#/digital')}catch(e){}}
+ if(parts[0]==='projects'||parts[0]==='video'||parts[0]==='digital'){location.replace('work/');return}
  document.documentElement.lang=lang;
  let v,cur='';
  if(path==='digital'){v=digital();cur='digital';document.title=x.wo+' — '+x.brand}
