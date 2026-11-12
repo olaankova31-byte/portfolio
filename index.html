@@ -231,13 +231,13 @@ body>header .logo{font-weight:600;font-size:13px;letter-spacing:.08em;line-heigh
 @media(max-width:860px){.xr{grid-template-columns:1fr;gap:6px}.duo{grid-template-columns:1fr}.facts,.edl{max-width:100%}.sec-h .note{display:none}}
 </style>
 </head>
-<body>
+<body class="portfolio-home">
 <div class="site-loader" role="status" aria-live="polite" aria-label="Загрузка сайта"><span class="site-loader-value">00%</span></div>
 <header>
  <a class="logo" href="#/" id="logo"></a>
  <button class="menu" id="menu" aria-expanded="false" aria-controls="nav"></button>
  <nav id="nav" aria-label="Main"></nav>
- <div class="lang" role="group" aria-label="Language"><button data-l="ru" aria-pressed="true">RU</button><button data-l="en" aria-pressed="false">EN</button></div>
+ <div class="header-actions"><a class="header-contact" href="#contact" id="header-contact">Обсудить проект ↗</a><div class="lang" role="group" aria-label="Language"><button data-l="ru" aria-pressed="true">RU</button><button data-l="en" aria-pressed="false">EN</button></div></div>
 </header>
 <main id="app"></main>
 <dialog id="dlg" aria-labelledby="dt"><div class="dh"><h3 id="dt"></h3><button id="dx" aria-label="Close">✕</button></div><div id="db"></div></dialog>
@@ -378,11 +378,8 @@ function contact(){const x=t(),c=CONTACT;return `<section class="contact" id="co
 function home(){const x=t();
  return `<section class="landing-hero">
   <div class="landing-intro">
-   <div class="landing-copy"><span class="eyebrow">${lang==='ru'?'Сайты · дизайн · команда':'Websites · design · team'}</span>
-   <h1>${lang==='ru'?'Один контакт для вашего проекта':'One point of contact for your project'}</h1>
-   <p>${lang==='ru'?'Собираю сайт и визуальную подачу, подключаю специалистов под задачу.':'I bring the website and visual direction together, adding specialists when needed.'}</p>
-   <div class="hero-actions"><a class="btn" href="work/">${lang==='ru'?'Смотреть работы':'View work'} ↗</a><a class="text-link" href="#contact">${lang==='ru'?'Обсудить проект':'Discuss a project'} ↓</a></div></div>
-   <a class="hero-art" href="real-estate/" aria-label="${lang==='ru'?'Смотреть проект Invest Group':'View Invest Group project'}"><img src="assets/21.jpg" alt="${lang==='ru'?'Фрагмент сайта Invest Group':'Invest Group website preview'}"><span class="hero-art-index">01</span><span class="hero-art-caption">INVEST GROUP · SAMARA</span></a>
+   <h1 class="hero-name"><span>${lang==='ru'?'Ольга':'Olga'}</span><a class="hero-inline-image" href="work/" aria-label="${lang==='ru'?'Посмотреть работы':'View selected work'}"><img src="assets/17.jpg" alt="${lang==='ru'?'Пример графического дизайна из портфолио':'Graphic design project preview'}"></a><span>${lang==='ru'?'Янкова':'Yankova'}</span></h1>
+   <p class="hero-description">${lang==='ru'?'Веб-дизайн и digital-решения для бизнеса':'Web design and digital solutions for business'}<br><span>${lang==='ru'?'[ Самара · проекты по всей России ]':'[ Samara · working across Russia ]'}</span></p>
   </div>
  </section>
  <section class="sec landing-directions" id="directions"><div class="landing-directions-head"><span class="eyebrow">${lang==='ru'?'Направления':'Focus'}</span><h2>${lang==='ru'?'Два направления. Один понятный процесс.':'Two focus areas. One clear process.'}</h2></div><div class="audience-grid">
@@ -430,7 +427,9 @@ let pendingScroll=null;
 let path=(location.hash||'').replace(/^#\/?/,'');
 function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
 function renderNav(cur){const x=t();
- $('#nav').innerHTML=`<a href="small-business/">${lang==='ru'?'Малый бизнес':'Small business'}</a><a href="real-estate/">${lang==='ru'?'Недвижимость':'Real estate'}</a><a href="work/"${cur==='digital'?' aria-current="page"':''}>${x.nav.works}</a><a href="team/">${lang==='ru'?'Команда':'Team'}</a><a href="#contact">${x.nav.contact}</a>`;
+ $('#logo').textContent=`© ${x.brand}`;
+ $('#header-contact').textContent=lang==='ru'?'Обсудить проект ↗':'Get in touch ↗';
+ $('#nav').innerHTML=`<a href="work/">${x.nav.works}</a><a href="#directions">${lang==='ru'?'Направления':'Focus'}</a><a href="#about">${x.nav.about}</a>`;
  $('#menu').textContent=$('#nav').classList.contains('open')?x.close:x.menu}
 
 function route(){const parts=path.split('/'),x=t();
@@ -440,7 +439,7 @@ function route(){const parts=path.split('/'),x=t();
  if(path==='digital'){v=digital();cur='digital';document.title=x.wo+' — '+x.brand}
  else{v=home();document.title=x.title}
  app.innerHTML=v+`<footer><span>© ${new Date().getFullYear()} ${x.brand}</span><span>${x.fsub}</span></footer>`;
- renderNav(cur);$('#logo').textContent=x.brand;
+ renderNav(cur);$('#logo').textContent=`© ${x.brand}`;
  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang?'true':'false'));
  if(pendingScroll){const el=document.getElementById(pendingScroll);if(el)el.scrollIntoView({behavior:'smooth'});pendingScroll=null}
  observe();
@@ -462,6 +461,9 @@ dlg.addEventListener('click',e=>{
  else if(b.dataset.a==='go'){dlg.close();pendingScroll='contact';if(path!=='')go('')}
 });
 document.addEventListener('click',e=>{
+ const jump=e.target.closest('a[href="#contact"],a[href="#directions"],a[href="#about"]');
+ if(jump){e.preventDefault();const id=jump.getAttribute('href').slice(1);$('#nav').classList.remove('open');$('#menu').setAttribute('aria-expanded','false');
+  if(path!==''){pendingScroll=id;go('')}else document.getElementById(id)?.scrollIntoView({behavior:'smooth'});return}
  const sv=e.target.closest('[data-svc]');if(sv){e.preventDefault();const i=+sv.dataset.svc;if(i===0)go('digital');else openFigma();return}
  const fg=e.target.closest('[data-f]');if(fg){e.preventDefault();openFigma();return}
  const cs=e.target.closest('[data-case]');if(cs){e.preventDefault();dProject(+cs.dataset.case);return}
