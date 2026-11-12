@@ -26,6 +26,10 @@
       contactText: {ru:'Расскажите, что нужно показать или запустить. Предложу состав работ и следующий шаг.',en:'Tell me what you need to show or launch. I will suggest a scope and next step.'},
       processHead: {ru:'Как идёт работа',en:'How we work'},
       samara: {ru:'Самара · работаю по всей России',en:'Samara · working across Russia'},
+      emailLabel: {ru:'Почта',en:'Email'},
+      telegramLabel: {ru:'Мессенджер',en:'Messenger'},
+      phoneLabel: {ru:'Телефон',en:'Phone'},
+      architecture: {ru:'Архитектурная визуализация ↗',en:'Architectural visualisation ↗'},
       byBrief: {ru:'Состав команды зависит от задачи проекта.',en:'The project team is built around the brief.'}
     },
     small: {
@@ -80,7 +84,20 @@
       valentinRole:{ru:'Видеомонтаж',en:'Video editing'},
       valentinText:{ru:'Монтаж видео для презентации проектов и контента.',en:'Video editing for project presentations and content.'},
       teamNote:{ru:'Состав команды зависит от задачи. На старте согласуем, кто участвует, за какую часть отвечает и что получает клиент.',en:'The team depends on the brief. At the start, we agree who is involved, what each person owns and what the client receives.'},
-      teamWork:{ru:'Смотреть примеры TRI-PIX',en:'See TRI-PIX work'}
+      teamWork:{ru:'Смотреть примеры TRI-PIX',en:'See TRI-PIX work'},
+      teamWorkEyebrow:{ru:'Подборка команды',en:'Team selection'},
+      teamWorkHead:{ru:'Примеры работ команды',en:'Selected team work'},
+      teamWorkLead:{ru:'3D-визуализация и видеомонтаж — примеры специалистов, которых можно подключить к проекту.',en:'3D visualisation and video editing by specialists who can join a project.'},
+      team3dHead:{ru:'3D-визуализация',en:'3D visualisation'},
+      team3dText:{ru:'Архитектурные и интерьерные проекты.',en:'Architectural and interior visualisation.'},
+      teamVideoHead:{ru:'Видеомонтаж',en:'Video editing'},
+      teamVideoText:{ru:'Длинный и короткий формат для разных площадок.',en:'Long and short edits for different platforms.'},
+      teamSeeAll:{ru:'Все примеры на TRI-PIX',en:'All examples on TRI-PIX'}
+    },
+    contactPage: {
+      eyebrow:{ru:'Контакты',en:'Contact'},
+      title:{ru:'Давайте обсудим ваш проект.',en:'Let’s discuss your project.'},
+      lead:{ru:'Напишите, что нужно сделать. Я уточню задачу и предложу следующий шаг.',en:'Tell me what you need. I will clarify the brief and suggest a next step.'}
     },
     work: {
       eyebrow:{ru:'Избранные проекты',en:'Selected projects'},

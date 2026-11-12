@@ -233,11 +233,11 @@ body>header .logo{font-weight:600;font-size:13px;letter-spacing:.08em;line-heigh
 </head>
 <body class="portfolio-home">
 <div class="site-loader" role="status" aria-live="polite" aria-label="Загрузка сайта"><span class="site-loader-value">00%</span></div>
-<header>
+<header class="site-header">
  <a class="logo" href="#/" id="logo"></a>
  <button class="menu" id="menu" aria-expanded="false" aria-controls="nav"></button>
  <nav id="nav" aria-label="Main"></nav>
- <div class="header-actions"><a class="header-contact" href="#contact" id="header-contact">Обсудить проект ↗</a><div class="lang" role="group" aria-label="Language"><button data-l="ru" aria-pressed="true">RU</button><button data-l="en" aria-pressed="false">EN</button></div></div>
+ <div class="header-actions"><a class="header-contact" href="contact/" id="header-contact">Контакты ↗</a><div class="lang" role="group" aria-label="Language"><button data-l="ru" aria-pressed="true">RU</button><button data-l="en" aria-pressed="false">EN</button></div></div>
 </header>
 <main id="app"></main>
 <dialog id="dlg" aria-labelledby="dt"><div class="dh"><h3 id="dt"></h3><button id="dx" aria-label="Close">✕</button></div><div id="db"></div></dialog>
@@ -383,7 +383,7 @@ function home(){const x=t();
   </div>
  </section>
  <section class="sec about-brief" id="about"><div class="about-label"><span class="eyebrow">${lang==='ru'?'Обо мне':'About'}</span><strong>${lang==='ru'?'Ольга Янкова':'Olga Yankova'}</strong><span>${lang==='ru'?'Самара · работаю по всей России':'Samara · working across Russia'}</span></div><div class="about-brief-copy"><h2>${lang==='ru'?'В дизайне и digital — больше шести лет.':'Over six years in design and digital.'}</h2><p>${lang==='ru'?'Проектирую структуру и интерфейсы, делаю визуальную подачу и помогаю довести сайт до запуска. Для 3D и видео подключаю специалистов команды.':'I plan structure and interfaces, shape the visual direction and help take a website to launch. For 3D and video, I bring in specialists from the team.'}</p><a href="team/" class="text-link">${lang==='ru'?'Познакомиться с командой':'Meet the team'} ↗</a></div></section>
- <section class="sec home-projects" id="work"><div class="sec-h"><h2>${lang==='ru'?'Выполненные проекты':'Selected projects'}</h2></div><div class="home-work-grid" id="home-work-grid"></div><div class="home-work-action"><a href="work/" class="text-link">${lang==='ru'?'Посмотреть все работы':'View all work'} ↗</a></div></section>
+ <section class="sec home-projects" id="work"><div class="sec-h"><h2>${lang==='ru'?'Мои работы':'My work'}</h2><span class="note">${lang==='ru'?'Сайты и digital-дизайн':'Websites and digital design'}</span></div><div class="home-work-grid" id="home-work-grid"></div><div class="home-work-action"><a href="work/" class="text-link">${lang==='ru'?'Посмотреть все мои работы':'View all my work'} ↗</a><a href="team/#team-work" class="text-link">${lang==='ru'?'Примеры команды · 3D и видео':'Team work · 3D and video'} ↗</a></div></section>
  ${contact()}`}
 
 
@@ -414,8 +414,8 @@ if(['contact','about'].includes(path)){pendingScroll=path;path=''}
 function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
 function renderNav(cur){const x=t();
  $('#logo').textContent=`© ${x.brand}`;
- $('#header-contact').textContent=lang==='ru'?'Обсудить проект ↗':'Get in touch ↗';
- $('#nav').innerHTML=`<a href="work/">${x.nav.works}</a><a href="small-business/">${lang==='ru'?'Малый бизнес':'Small business'}</a><a href="real-estate/">${lang==='ru'?'Недвижимость':'Real estate'}</a><a href="#about">${x.nav.about}</a>`;
+ $('#header-contact').textContent=lang==='ru'?'Контакты ↗':'Contact ↗';
+ $('#nav').innerHTML=`<a href="small-business/">${lang==='ru'?'Малый бизнес':'Small business'}</a><a href="real-estate/">${lang==='ru'?'Недвижимость':'Real estate'}</a><a href="work/">${x.nav.works}</a><a href="team/">${lang==='ru'?'Команда':'Team'}</a><a href="#about">${x.nav.about}</a>`;
  $('#menu').textContent=$('#nav').classList.contains('open')?x.close:x.menu}
 
 function route(){const parts=path.split('/'),x=t();
