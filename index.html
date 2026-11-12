@@ -425,6 +425,7 @@ function dProject(i){const x=t(),p=webProjects[i],ti=p.title[lang];dt.textConten
 /* ---------- ROUTER ---------- */
 let pendingScroll=null;
 let path=(location.hash||'').replace(/^#\/?/,'');
+if(['contact','directions','about'].includes(path)){pendingScroll=path;path=''}
 function go(p){path=p;try{history.replaceState(null,'','#/'+p)}catch(e){try{location.hash='#/'+p}catch(_){}}route()}
 function renderNav(cur){const x=t();
  $('#logo').textContent=`© ${x.brand}`;

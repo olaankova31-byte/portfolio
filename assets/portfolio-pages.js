@@ -8,6 +8,8 @@
       realty: {ru:'Недвижимость',en:'Real estate'},
       work: {ru:'Работы',en:'Work'},
       team: {ru:'Команда',en:'Team'},
+      directions: {ru:'Направления',en:'Focus'},
+      about: {ru:'Обо мне',en:'About'},
       contact: {ru:'Контакты',en:'Contact'},
       home: {ru:'Ольга Янкова',en:'Olga Yankova'},
       discuss: {ru:'Обсудить проект',en:'Discuss a project'},
@@ -114,6 +116,7 @@
     langButtons.forEach(button => button.setAttribute('aria-pressed', button.dataset.l === active ? 'true' : 'false'));
     const title = document.body.getAttribute(`data-title-${active}`);
     if (title) document.title = title;
+    document.dispatchEvent(new CustomEvent('site:language', {detail: active}));
   }
 
   langButtons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.l)));
