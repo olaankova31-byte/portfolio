@@ -79,6 +79,19 @@
     }).join('');
   }
 
+  function renderFeatured() {
+    const grid = document.getElementById('home-work-grid');
+    if (!grid) return;
+    const featured = ['invest-group','deloart'].map(slug => projects.find(project => project.slug === slug)).filter(Boolean);
+    grid.innerHTML = featured.map((project, index) => {
+      const title = tr(project.name);
+      const media = project.cover
+        ? `<img src="assets/${project.cover}" alt="${title} — ${tr(project.category)}" loading="lazy">`
+        : placeholder(project, title);
+      return `<a class="work-card" href="work/project.html?slug=${encodeURIComponent(project.slug)}"><div class="work-card-media">${media}</div><span class="work-card-title"><small>${String(index + 1).padStart(2,'0')}</small><strong>${title}</strong><span class="work-card-arrow" aria-hidden="true">↗</span></span></a>`;
+    }).join('');
+  }
+
   function renderDetail() {
     const info = document.getElementById('project-info');
     const gallery = document.getElementById('project-gallery');
@@ -100,6 +113,7 @@
 
   function render() {
     renderGrid();
+    renderFeatured();
     renderDetail();
   }
 
